@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>circles</title>
+	<link rel="stylesheet" type="text/css" href="circles.css">
+	<script type="text/javascript" src="paper-full.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.28/howler.js"></script>
+	<script type="text/paperscript" canvas="myCanvas">
+		var keyData={
+			a: {
+				color:"#9d4d79",
+				sound:new Howl({
+					urls : ['sounds/bubbles.mp3']
+				})	
+			},
+			s: {
+				color:"#834d79",
+				sound:new Howl({
+					urls : ['sounds/clay.mp3']
+				})	
+			},
+			d:  {
+				color:"#654d79",
+				sound:new Howl({
+					urls : ['sounds/confetti.mp3']
+				})	
+			},
+			f:  {
+				color:"#574d79",
+				sound:new Howl({
+					urls : ['sounds/corona.mp3']
+				})	
+			},
+			g:  {
+				color:"#1e4d79",
+				sound:new Howl({
+					urls : ['sounds/dotted-spiral.mp3']
+				})	
+			},
+			h:	 {
+				color:"#b44d79",
+				sound:new Howl({
+					urls : ['sounds/flash-1.mp3']
+				})	
+			},
+			j:	 {
+				color:"#ea4d79",
+				sound:new Howl({
+					urls : ['sounds/flash-2.mp3']
+				})	
+			},
+			k:  {
+				color:"#ea8179",
+				sound:new Howl({
+					urls : ['sounds/flash-3.mp3']
+				})	
+			},
+			l:  {
+				color:"#eaa179",
+				sound:new Howl({
+					urls : ['sounds/glimmer.mp3']
+				})	
+			},
+			q:	 {
+				color:"#a4b779",
+				sound:new Howl({
+					urls : ['sounds/moon.mp3']
+				})	
+			},
+			w:	 {
+				color:"#24b779",
+				sound:new Howl({
+					urls : ['sounds/pinwheel.mp3']
+				})	
+			},
+			e:	 {
+				color:"#00d100",
+				sound:new Howl({
+					urls : ['sounds/splits.mp3']
+				})	
+			},
+			r:	 {
+				color:"#afd100",
+				sound:new Howl({
+					urls : ['sounds/squiggle.mp3']
+				})	
+			},
+			t:	 {
+				color:"#74818b",
+				sound:new Howl({
+					urls : ['sounds/strike.mp3']
+				})	
+			},
+			y:	 {
+				color:"#94a28b",
+				sound:new Howl({
+					urls : ['sounds/suspension.mp3']
+				})	
+			},
+			u:	 {
+				color:"#7e6c73",
+				sound:new Howl({
+					urls : ['sounds/timer.mp3']
+				})	
+			},
+			i:	 {
+				color:"#f76c73",
+				sound:new Howl({
+					urls : ['sounds/ufo.mp3']
+				})	
+			},
+			o:	 {
+				color:"#f7cb73",
+				sound:new Howl({
+					urls : ['sounds/veil.mp3']
+				})	
+			},
+			p:	 {
+				color:"#ffea73",
+				sound:new Howl({
+					urls : ['sounds/wipe.mp3']
+				})	
+			},
+			z:	 {
+				color:"#ffff73",
+				sound:new Howl({
+					urls : ['sounds/zig-zag.mp3']
+				})	
+			},
+			x:	 {
+				color:"#ffff48",
+				sound:new Howl({
+					urls : ['sounds/piston-3.mp3']
+				})	
+			},
+			c:	 {
+				color:"#ffff20",
+				sound:new Howl({
+					urls : ['sounds/piston-1.mp3']
+				})	
+			},
+			v:	 {
+				color:"#ffce01",
+				sound:new Howl({
+					urls : ['sounds/piston-2.mp3']
+				})	
+			},
+			b:	 {
+				color:"#ffa201",
+				sound:new Howl({
+					urls : ['sounds/prism-2.mp3']
+				})	
+			},
+			n:	 {
+				color:"#ff3401",
+				sound:new Howl({
+					urls : ['sounds/prism-1.mp3']
+				})	
+			},
+			m:	 {
+				color:"pink",
+				sound:new Howl({
+					urls : ['sounds/prism-3.mp3']
+				})	
+			}	
+
+		} 
+		var circles= [];
+		function onKeyDown(event) {
+		if(keyData[event.key])
+		{
+			var maxPoint=new Point(view.size.width, view.size.height);
+			var randomPoint=Point.random();
+			var point=maxPoint * randomPoint;
+			var newCircle=new Path.Circle(point, 500);
+			newCircle.fillColor=keyData[event.key].color;
+			keyData[event.key].sound.play();
+			circles.push(newCircle);	
+		}
+		
+	};
+	function onFrame(event){
+		for(var i=0;i<circles.length;i++)
+		{
+			circles[i].fillColor.hue += 1;
+			circles[i].scale(0.9);			
+		}
+	}
+	</script>
+</head>
+<body>
+<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
